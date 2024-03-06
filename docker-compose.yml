@@ -1,0 +1,26 @@
+version: '3.8' # DockerComposeのファイルフォーマットバージョン。3.8が最新
+
+services:
+  # Webアプリケーションのサーバーサイドサービス
+  server:  #サービス名
+    container_name: server  # コンテナ名
+    build: .               # 現在のディレクトリのDockerfileを使用してイメージをビルドする
+    ports:
+      - "3000:3000"        # ホストPCのポート3000と、コンテナのポート３０００をマッピングする
+    depends_on:            # 他サービスとの依存関係があることを示す（起動順序が決まる。が、これらのサービスの起動完了後に起動するかどうかは保証していない）
+      - db
+    environment:           # 環境変数の設定（schema.prismaで参照しているもの）
+      DATABASE_URL: "postgresql://user:password@db:5432/dbname?schema=public"
+    volumes:
+      - .:/app             # 現在のディレクトリをコンテナ内の/appにマウント
+
+  # データベースのサービス
+  db:
+    image: postgres:14.11     # postgresql@14のイメージをそのまま使用
+    container_name: db   # コンテナ名
+    ports:
+      - "5432:5432"        # ホストPCのポート5432と、コンテナのポート5432をマッピングする
+    environment:           # PostgreSQLのユーザー名、パスワード、データベース名を環境変数で設定
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: dbname

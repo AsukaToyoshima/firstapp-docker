@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "es2018",
+    "module": "commonjs",
+    "outDir": "./dist", 
+    "rootDir": "./",
+    "strict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+   "allowJs": true,
+
+    "sourceMap": true,
+    "skipLibCheck": true,
+
+    "moduleResolution": "node",
+    "lib": ["es2018"]  
+  },
+  "include": [
+     "./**/*.ts"
+, "routes/index.ts"  ],
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts" 
+  ]
+}
