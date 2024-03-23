@@ -22,3 +22,8 @@ services:
       - "5432:5432"        # ホストPCのポート5432と、コンテナのポート5432をマッピングする
     env_file:
         - .env
+    volumes:
+        - firstapp-volume:/var/lib/postgresql/data
+
+volumes:
+  firstapp-volume:

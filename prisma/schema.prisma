@@ -13,7 +13,7 @@ datasource db {
 
 //Postsテーブル
 //@defaultはデフォルト値、@idは主キーであることを表す
-model Posts {
+model Post {
   id Int @default(autoincrement()) @id
   content String 
   created_at DateTime @default(now())
